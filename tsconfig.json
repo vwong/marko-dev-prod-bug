@@ -1,0 +1,14 @@
+{
+  "include": ["src/**/*", "vite.config.ts", ".marko-run/*"],
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "dom.iterable", "ES2021.String", "ES2023.Array"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext"
+  }
+}

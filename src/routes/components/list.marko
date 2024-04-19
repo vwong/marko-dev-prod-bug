@@ -1,0 +1,13 @@
+<!-- use tags -->
+<my-id/list/>
+
+<table>
+  <thead>
+    <th>Page</th>
+  </thead>
+  <tbody id=list no-update-body>
+    <${input.renderBody}/>
+  </tbody>
+</table>
+
+<scroll-forever for=list nextPage=input.nextPage src=input.src/>

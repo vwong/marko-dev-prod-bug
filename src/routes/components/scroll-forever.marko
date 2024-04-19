@@ -1,0 +1,40 @@
+<!-- use tags -->
+<let/src=""/>
+<let/nextPage=input.nextPage/>
+
+<div/scrollBottom>
+  &nbsp;
+</div>
+
+<effect() {
+  let observer: IntersectionObserver;
+  window.requestAnimationFrame(() => {
+    const target = scrollBottom();
+    observer = new IntersectionObserver((entries) => {
+      if (entries[0].intersectionRatio > 0) {
+        src = `${input.src}?page=${nextPage}`;
+        observer.unobserve(target);
+      }
+    });
+    observer.observe(target);
+  });
+  return () => {
+    observer?.disconnect();
+  };
+}/>
+
+<effect() {
+  if (!src) {
+    return;
+  }
+  fetch(src).then((response) => {
+    response.text().then((html) => {
+      (document.getElementById(input.for) as HTMLElement).insertAdjacentHTML(
+        "beforeend",
+        html,
+      );
+
+      nextPage = parseInt(response.headers.get("page-number")) + 1;
+    });
+  });
+}/>
